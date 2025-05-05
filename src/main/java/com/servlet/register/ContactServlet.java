@@ -1,0 +1,75 @@
+package com.servlet.register;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/contactdb")
+public class ContactServlet extends HttpServlet {
+	
+private static final String INSERT_QUERY = "INSERT INTO CONTACTDB(NAME,EMAIL,MESSAGE) VALUES(?,?,?)";
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		//get PrintWriter
+		PrintWriter pw = res.getWriter();
+		// set content type
+		res.setContentType("text/html");
+		//read the form values
+		String name = req.getParameter("name");
+		String email = req.getParameter("email");
+		String message = req.getParameter("message");
+		
+		//load the jdbc driver
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			//create the connection
+		try(Connection con = DriverManager.getConnection("jdbc:mysql:///project_repairit","root","Prashant@1887");
+				PreparedStatement ps = con.prepareStatement(INSERT_QUERY);){
+					
+			//set the value
+			ps.setString(1, name);
+			ps.setString(2, email);
+			ps.setString(3, message);
+			
+			//executive the query
+			int count = ps.executeUpdate();
+			if(count==0) {
+				pw.println("<br><br> <center><h2> Record is not updated. </h2> <br><br> <h2><a href='LContactUs.html'>Click Here</h2> </center>");
+			}else {
+				pw.println("<br><br> <center><h2> Thank You for Contacting us,<br> -RepairIt</h2> <br> <h2><a href='LIndex.html'>Click Here</h2> </center>");
+			}
+		}catch(SQLException se) {
+			pw.println(se.getMessage());
+			se.printStackTrace();
+		}catch(Exception e) {
+			pw.println(e.getMessage());
+			e.printStackTrace();
+		}
+		
+		//closed the stream
+		pw.close();
+	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(req, resp);
+	}
+
+	
+	
+}

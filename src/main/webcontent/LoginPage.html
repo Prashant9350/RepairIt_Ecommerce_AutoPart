@@ -1,0 +1,161 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <!--<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title> Login Page</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+    	* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    display: flex;
+    /*justify-content: center; */
+    align-items: center;
+    padding: 10px;
+    /*background: url(Vintage.jpg) no-repeat center  center  fixed;*/
+     background: url(BMW-01.jpeg) no-repeat center  center  fixed;
+    background-size: cover;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 20rem;
+    margin: 1rem;
+    padding: 2rem 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fff;
+	 border-radius: 5px;
+	 box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
+     opacity: 0.90; 
+}
+
+.container h2 {
+    margin-bottom: 2rem;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.container form label {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.container form input {
+    width: 16rem;
+    outline: none;
+    padding: 5px 10px;
+    margin-bottom: 1rem;
+    border: 1px solid rgb(133, 129, 129);
+}
+
+button {
+ 
+	border: none;
+    color: #fff;
+    margin: 1rem 0;
+    font-size: 18px;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5rem;
+    /* background: linear-gradient(to right, red, yellow); */
+	background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+	transition: all 0.4s;
+  
+}
+.button:hover .input{
+    left: 0;
+}
+.newUser span {
+    color: rgb(25, 176, 176);
+}
+.home img{
+	width: 100px;
+	position: absolute;
+    top: 82%;
+    left: 47%;
+    color: #fff;
+    margin: 1rem;
+	margin-top: -10px;
+	border-radius: 50px;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+    </style>
+</head>
+
+<body>
+
+    <section class="container">
+
+        <h2> Login Form </h2>
+        <form action="logindb" class="form">
+          <div>
+            <label for="userId"><span> Username </span></label>
+            <input type="text" name="username" id="userId">
+		  </div>
+          <div>
+            <label for="password"><span> Password </span></label>
+            <input type="password" name="password" id="password">
+		  	<i id="show-hide" class="fa-solid fa-eye-slash"></i>
+		  </div>
+		  
+            <button type= "submit">LOGIN</button>
+          
+        </form>
+
+         <p class="newUser">
+            Not a member? <a href="SignupPage.html" class="mr-5 hover:text-purple"> Signup now </a>
+        </p>
+     </section>
+     <div class="home" >
+		 <a href="Index.html">
+			 <img src="https://www.animatedimages.org/data/media/1256/animated-home-sign-image-0002.gif" border="0" alt="animated-home-sign-image-0002" /></a> 
+	 </div>
+
+</body>
+<script>
+	const showHide = document.getElementById('show-hide');
+let passwordInput = document.getElementById('password');
+
+showHide.addEventListener('click', function () {
+    showHide.classList.toggle('show');
+
+    if (showHide.classList.contains('show')) {
+        showHide.classList.remove('fa-eye-slash');
+        showHide.classList.add('fa-eye');
+        passwordInput.setAttribute('type', 'text');
+    }
+    else {
+        showHide.classList.add('fa-eye-slash');
+        showHide.classList.remove('fa-eye');
+        passwordInput.setAttribute('type', 'password');
+    }
+});
+</script>
+</html>
+
+
